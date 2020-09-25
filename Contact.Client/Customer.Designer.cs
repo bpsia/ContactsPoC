@@ -33,7 +33,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateOfBirthCustomer = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPhoneList = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,6 +71,8 @@
             this.CustomersGrid.Name = "CustomersGrid";
             this.CustomersGrid.Size = new System.Drawing.Size(1177, 396);
             this.CustomersGrid.TabIndex = 0;
+            this.CustomersGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomersGrid_CellContentClick);
+            this.CustomersGrid.SelectionChanged += new System.EventHandler(this.CustomersGrid_SelectionChanged);
             // 
             // txtSearch
             // 
@@ -85,7 +87,7 @@
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnAddCustomer);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dateOfBirthCustomer);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtPhoneList);
             this.groupBox1.Controls.Add(this.label3);
@@ -122,12 +124,12 @@
             this.btnAddCustomer.UseVisualStyleBackColor = true;
             this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
-            // dateTimePicker1
+            // dateOfBirthCustomer
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(269, 172);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(232, 20);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dateOfBirthCustomer.Location = new System.Drawing.Point(269, 172);
+            this.dateOfBirthCustomer.Name = "dateOfBirthCustomer";
+            this.dateOfBirthCustomer.Size = new System.Drawing.Size(232, 20);
+            this.dateOfBirthCustomer.TabIndex = 9;
             // 
             // label5
             // 
@@ -274,6 +276,7 @@
             this.btnUpdateCustomer.TabIndex = 22;
             this.btnUpdateCustomer.Text = "Update Customer";
             this.btnUpdateCustomer.UseVisualStyleBackColor = true;
+            this.btnUpdateCustomer.Click += new System.EventHandler(this.btnUpdateCustomer_Click);
             // 
             // label10
             // 
@@ -383,7 +386,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAddCustomer;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateOfBirthCustomer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPhoneList;
         private System.Windows.Forms.Label label3;
