@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Common", "Contact.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Client", "Contact.Client\Contact.Client.csproj", "{D7D91066-B7E8-4526-886C-55C34695CBB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.Schedular", "Contact.Schedular\Contact.Schedular.csproj", "{BD6A7822-FE9B-43EA-B224-C96E119E6946}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D7D91066-B7E8-4526-886C-55C34695CBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7D91066-B7E8-4526-886C-55C34695CBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7D91066-B7E8-4526-886C-55C34695CBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6A7822-FE9B-43EA-B224-C96E119E6946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6A7822-FE9B-43EA-B224-C96E119E6946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6A7822-FE9B-43EA-B224-C96E119E6946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6A7822-FE9B-43EA-B224-C96E119E6946}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
