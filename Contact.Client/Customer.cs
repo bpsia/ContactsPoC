@@ -85,7 +85,46 @@ namespace Contact.Client
 
         private async void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            
+            DateTime date = dateOfBirthCustomer.Value;
+
+
+            Customer _customer = new Customer()
+            {
+                Id = Guid.NewGuid(),
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                ListOfEmails = txtEmailsList.Text,
+                ListOfPhoneNumbers = txtPhoneList.Text,
+                DateOfBirth = Convert.ToDateTime(date.ToString("yyyy-mm-dd"))
+            };
+
+            var postTask = client.PostAsJsonAsync<Customer>("Customers", _customer);
+
+            postTask.Wait();
+
+            var result = postTask.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+
+                var readTask = result.Content.ReadAsAsync<Customer>();
+
+                readTask.Wait();
+
+                var insertedCustomer = readTask.Result;
+
+                var data = await LoadCustomersData();
+                CustomersGrid.DataSource = data.ToList();
+                Clear();
+
+                MessageBox.Show(result.StatusCode.ToString());
+            }
+            else
+            {
+                MessageBox.Show(result.StatusCode.ToString());
+            }
+
+
         }
 
         private async void txtSearch_TextChanged(object sender, EventArgs e)
@@ -99,6 +138,76 @@ namespace Contact.Client
             var bindingList = new BindingList<Customer>(customersList);
             var source = new BindingSource(bindingList, null);
             CustomersGrid.DataSource = data.ToList();
+        }
+
+        private async void btnUpdateCustomer_Click(object sender, EventArgs e)
+        {
+            DateTime date = dateOfBirthCustomer.Value;
+
+            Customer _customer = new Customer()
+            {
+                Id = Guid.Parse(txtCustomerId.Text),
+                FirstName = txtEditFirstName.Text,
+                LastName = txtEditLastName.Text,
+                ListOfEmails = txtEditEmailsList.Text,
+                ListOfPhoneNumbers = txtPhoneList.Text,
+                DateOfBirth = Convert.ToDateTime(date.ToString("yyyy-mm-dd"))
+            };
+
+            var postTask = client.PutAsJsonAsync<Customer>("Customers",  _customer);
+
+            postTask.Wait();
+
+            var result = postTask.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+
+                var readTask = result.Content.ReadAsAsync<Customer>();
+
+                readTask.Wait();
+
+                var insertedCustomer = readTask.Result;
+
+                var data = await LoadCustomersData();
+                CustomersGrid.DataSource = data.ToList();
+
+                EditClear();
+
+                MessageBox.Show(result.StatusCode.ToString());
+            }
+            else
+            {
+                MessageBox.Show(result.StatusCode.ToString());
+            }
+
+            EditClear();
+        }
+
+        private void CustomersGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in CustomersGrid.SelectedRows)
+            {
+                txtCustomerId.Text = row.Cells[0].Value.ToString();
+                txtEditFirstName.Text = row.Cells[1].Value.ToString();
+                txtEditLastName.Text = row.Cells[2].Value.ToString();
+                txtEditPhoneList.Text = row.Cells[4].Value.ToString();
+                txtEditEmailsList.Text = row.Cells[3].Value.ToString();
+                //...
+            }
+        }
+
+        private void CustomersGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = CustomersGrid.Rows[e.RowIndex];
+                txtCustomerId.Text = row.Cells["Id"].Value.ToString();
+                txtEditFirstName.Text = row.Cells["FirstName"].Value.ToString();
+                txtEditLastName.Text = row.Cells["LastName"].Value.ToString();
+                txtEditPhoneList.Text = row.Cells["ListOfPhoneNumbers"].Value.ToString();
+                txtEditEmailsList.Text = row.Cells["ListOfEmails"].Value.ToString();
+            }
         }
     }
 }
